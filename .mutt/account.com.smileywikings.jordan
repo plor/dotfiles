@@ -1,0 +1,34 @@
+source ~/.muttrc
+
+# jordan@smileywikings.com
+set realname = "Jordan Walker"
+set from = "jordan@smileywikings.com"
+set hostname = "smileywikings.com"
+
+## receive
+set folder = "imaps://imap.migadu.com"
+set postponed = +Drafts
+set spoolfile = +INBOX
+set record = +Sent
+set imap_user = "jordan@smileywikings.com"
+set imap_pass = "'`pass show accounts/email/jordan@smileywikings.com`'"
+set header_cache = ~/.mutt/smileywikings/cache/headers
+set message_cachedir = ~/.mutt/smileywikings/cache/bodies
+
+# send
+set smtp_url = "smtps://smtp.migadu.com"
+
+# gpg config
+
+set pgp_autosign = yes
+set pgp_verify_sig = yes
+set pgp_use_gpg_agent = yes
+
+set pgp_sign_as = B099E1E94107C373E5CCB5596FE5F9930A004EB0
+
+# hooks
+account-hook $folder "set imap_user=$imap_user imap_pass=$imap_pass"
+
+# macros
+macro index a ":set confirmappend=no delete=yes\n<save-message>=Archive/2024\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n"
+macro index A ":set confirmappend=no delete=yes\n<tag-prefix><save-message>=Archive/2024\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n"

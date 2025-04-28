@@ -1,0 +1,23 @@
+# MUTT
+
+set imap_check_subscribed
+set imap_keepalive = 300
+unset imap_passive
+set mail_check = 60
+set mbox_type = Maildir
+set edit_headers = yes
+set sidebar_visible = yes
+set sort = reverse-date-received
+
+set editor = nvim
+
+# colors
+
+color normal white black
+color hdrdefault blue black
+color indicator blue black
+color markers yellow black
+color quoted green black
+color status white black
+
+bind index G imap-fetch-mail

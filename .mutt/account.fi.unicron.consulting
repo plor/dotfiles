@@ -1,0 +1,33 @@
+source ~/.muttrc
+
+# consulting@unicron.fi
+set realname = "Jordan Walker"
+set from = "consulting@unicron.fi"
+set hostname = "unicron.fi"
+
+## receive
+set folder = "imaps://imap.migadu.com:993"
+set postponed = +Drafts
+set spoolfile = +INBOX
+set record = +Sent
+set imap_user = "consulting@unicron.fi"
+set imap_pass = `pass show accounts/email/consulting@unicron.fi`
+set header_cache = ~/.mutt/unicron/cache/headers
+set message_cachedir = ~/.mutt/unicron/cache/bodies
+
+# send
+set smtp_url = "smtps://smtp.migadu.com"
+
+# gpg config
+
+set pgp_autosign = yes
+set pgp_verify_sig = yes
+set pgp_use_gpg_agent = yes
+
+set pgp_sign_as = DEC20F0D91384494E786A59CCD3C6E398572C784
+# hooks
+#account-hook $folder "set imap_user=$imap_user imap_pass=$imap_pass"
+
+# macros
+macro index a ":set confirmappend=no delete=yes\n<save-message>=Archive/2024\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n"
+macro index A ":set confirmappend=no delete=yes\n<tag-prefix><save-message>=Archive/2024\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n"
