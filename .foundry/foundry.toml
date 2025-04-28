@@ -1,0 +1,9 @@
+[profile.default]
+optimizer=true
+optimizer_runs=500
+
+[etherscan]
+mainnet = { key = "${ETHERSCAN_MAINNET_KEY}" }
+
+[rpc_endpoints]
+mainnet = "${ETH_RPC_URL}"
