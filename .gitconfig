@@ -1,0 +1,19 @@
+[core]
+	pager = delta
+
+[user]
+	email = plor@nihil.wtf
+	name = plor
+
+[init]
+	defaultBranch = master
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	dark = true
+
+[merge]
+	conflictstyle = zdiff3
