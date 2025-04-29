@@ -5,14 +5,14 @@ if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 
-if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+if [ -f ~/.config/sh/aliases ]; then
+	. ~/.config/sh/aliases
 fi
 
-if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
-	. ~/.nix-profile/etc/profile.d/nix.sh
+if [ -f ~/.config/sh/secrets ]; then
+	. ~/.config/sh/secrets
 fi
 
-if [ -f ~/.bash_secrets ]; then
-	. ~/.bash_secrets
+if [ -f ~/.config/sh/shared_env ]; then
+	. ~/.config/sh/shared_env
 fi

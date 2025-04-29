@@ -1,0 +1,6 @@
+#!/bin/bash
+
+alias vim='nvim'
+alias personal='mutt -F ~/.mutt/account.us.jordanwalker.jordan'
+alias wikings='mutt -F ~/.mutt/account.com.smileywikings.jordan'
+alias unicron='mutt -F ~/.mutt/account.fi.unicron.consulting'
