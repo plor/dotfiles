@@ -9,6 +9,6 @@ here would be of use.
 
 # Things to do
 - TODO Make a separate stow repo for sensitive things
-- TODO Create ignore list to allow non-config files in stow dir
+- DONE Create ignore list to allow non-config files in stow dir
 - TODO Find configs that can be moved in (git globals, etc)
-- TODO Figure out .stowrc
+- DONE Figure out .stowrc
