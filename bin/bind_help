@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
 
-hyprctl binds -j | jq -r '.[]|select(.has_description)| if .modmask == 64 then "\ue70f\t\t\t"+.key+"\t\t\t"+.description elif .modmask == 65 then "SHIFT+\ue70f\t"+.key+"\t\t\t"+.description elif .modmask == 68 then "CTRL+\ue70f\t\t"+.key+"\t\t\t"+.description else " " end' | magick -size 700x900 -background black -pointsize 20 -fill white pango:"@-" png:- | swayimg - -c info.viewer.top_left=none -c info.viewer.top_right=none -c info.viewer.bottom_left=none -a bind_help
+hyprctl binds -j | jq -r '.[]|select(.has_description)| if .modmask == 64 then "\ue70f\t\t\t"+.key+"\t\t\t"+.description elif .modmask == 65 then "SHIFT+\ue70f\t"+.key+"\t\t\t"+.description elif .modmask == 68 then "CTRL+\ue70f\t\t"+.key+"\t\t\t"+.description else " " end' | magick -size 750x1100 -background black -pointsize 20 -fill white pango:"@-" png:- | swayimg - -c info.viewer.top_left=none -c info.viewer.top_right=none -c info.viewer.bottom_left=none -a bind_help
 
 
 # hyprctl binds -j | jq -r '.[] | if .modmask == 64 then "mod" elif .modmask == 65 then "shift+mod" elif .modmask == 68 then "ctrl+mod" else .modmask end'
