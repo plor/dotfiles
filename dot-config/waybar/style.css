@@ -46,11 +46,6 @@ button:hover {
     box-shadow: inset 0 -3px #ffffff;
 }
 
-/* you can set a style on hover for any module like this */
-#pulseaudio:hover {
-    background-color: #aaaaaa;
-}
-
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
@@ -91,9 +86,24 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon,
-#mpd {
+#mpd,
+#custom-power,
+#custom-uptime {
     padding: 0 10px;
     color: #ffffff;
+}
+
+
+#clock:hover,
+#battery:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#pulseaudio:hover,
+#tray:hover,
+#custom-power:hover,
+#custom-uptime:hover {
+    background-color: #aaaaaa;
 }
 
 #window,
@@ -115,8 +125,12 @@ button:hover {
     background-color: #666666;
 }
 
+#custom-uptime {
+    background-color: #666666;
+}
+
 #battery {
-    background-color: #ffffff;
+    background-color: #999999;
     color: #000000;
 }
 
@@ -243,6 +257,15 @@ label:focus {
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
     background-color: #eb4d4b;
+}
+
+#tray > *:hover {
+    background-color: #999999;
+}
+
+#custom-power {
+    background-color: #666666;
+    padding: 10px 10px;
 }
 
 #idle_inhibitor {
