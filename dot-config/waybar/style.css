@@ -96,6 +96,8 @@ button:hover {
 
 #clock:hover,
 #battery:hover,
+#battery.charging:hover,
+#battery.plugged:hover,
 #cpu:hover,
 #memory:hover,
 #temperature:hover,
