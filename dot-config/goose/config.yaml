@@ -1,0 +1,38 @@
+GOOSE_MODE: approve
+GOOSE_PROVIDER: openrouter
+extensions:
+  computercontroller:
+    bundled: null
+    display_name: null
+    enabled: true
+    name: computercontroller
+    timeout: null
+    type: builtin
+  developer:
+    bundled: null
+    display_name: null
+    enabled: true
+    name: developer
+    timeout: null
+    type: builtin
+  memory:
+    bundled: null
+    display_name: null
+    enabled: true
+    name: memory
+    timeout: null
+    type: builtin
+  nostr:
+    args:
+    - -y
+    - '@nostrbook/mcp@latest'
+    bundled: null
+    cmd: npx
+    description: null
+    enabled: true
+    env_keys: []
+    envs: {}
+    name: nostr
+    timeout: 60
+    type: stdio
+GOOSE_MODEL: anthropic/claude-sonnet-4

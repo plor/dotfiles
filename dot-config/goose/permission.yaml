@@ -1,0 +1,10 @@
+user:
+  always_allow:
+  - nostr__read_nips_index
+  - nostr__read_nip
+  - nostr__read_kind
+  - nostr__generate_kind
+  - developer__text_editor
+  ask_before:
+  - developer__shell
+  never_allow: []
