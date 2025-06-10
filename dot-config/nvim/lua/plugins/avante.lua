@@ -6,23 +6,33 @@ return {
 		opts = {
 			-- add any opts here
 			-- for example
-			provider = "datamachine",
-			--      openai = {
-			--        endpoint = 'https://api.openai.com/v1',
-			--        model = 'gpt-4o', -- your desired model (or use gpt-4o, etc.)
-			--        timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-			--        temperature = 0,
-			--        max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-			--reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
-			--      },
-			vendors = {
+			provider = "openrouter",
+			providers = {
+				openai = {
+					endpoint = 'https://api.openai.com/v1',
+					model = 'gpt-4o', -- your desired model (or use gpt-4o, etc.)
+					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+					max_tokens = 18192, -- Increase this to include reasoning tokens (for reasoning models)
+				},
+				venice = {
+					__inherited_from = "openai",
+					endpoint = "https://api.venice.ai/api/v1",
+					api_key_name = "VENICE_API_KEY",
+					model = 'qwen3-4b',
+				},
 				datamachine = {
 					__inherited_from = "openai",
 					endpoint = "https://datamachine.ai/api/v1",
 					api_key_name = "DATAMACHINE_API_KEY",
 					model = "DeepSeek-R1-Distill-Qwen-32B",
 				},
-			},
+				openrouter = {
+					__inherited_from = "openai",
+					endpoint = "https://openrouter.ai/api/v1",
+					api_key_name = "OPENROUTER_API_KEY",
+					model = "anthropic/claude-sonnet-4",
+				},
+			}
 		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 		build = "make",
