@@ -8,9 +8,3 @@ work to do this, but if this changes writing a stow script
 here would be of use.
 
 tl;dr Run `stow .` from `.dotfiles/` to update symlinks
-
-* Things to do
-** TODO Make a separate stow repo for sensitive things
-** DONE Create ignore list to allow non-config files in stow dir
-** TODO Find configs that can be moved in (git globals, etc)
-** DONE Figure out .stowrc
