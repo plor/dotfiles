@@ -1,0 +1,130 @@
+#!/usr/bin/bash
+
+wob=/tmp/wobpipe
+do_wob=false
+silent=false
+action=""
+
+if [[ -z $wob ]]; then
+  mkfifo $wob
+fi
+
+while getopts "hwsa:" flag; do
+  case $flag in
+    h)
+      echo "$0: -hwsa <action>"
+      echo "-h: this help"
+      echo "-w: write to wob pipe"
+      echo "-s: silent"
+      echo "-a: action (reqd)"
+      echo "  incr, decr, mute, brighter, darker"
+      exit 0
+    ;;
+
+    w)
+      do_wob=true
+    ;;
+
+    s)
+      silent=true
+    ;;
+
+    a)
+      action=${OPTARG}
+    ;;
+
+    ?)
+      echo "invalid cmd"
+    ;;
+  esac
+done
+
+if [[ -z $action ]]; then
+  echo "action required"
+  exit 1
+fi
+
+incr_vol() {
+  wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+  lvl=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%d\n", $2 * 100}')
+  if [[ $silent == false ]]; then
+    echo $lvl
+  fi
+  if [[ $do_wob == true ]]; then
+    echo $lvl > $wob
+  fi
+}
+
+decr_vol() {
+  wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+  lvl=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%d\n", $2 * 100}')
+  if [[ $silent == false ]]; then
+    echo $lvl
+  fi
+  if [[ $do_wob == true ]]; then
+    echo $lvl > $wob
+  fi
+}
+
+toggle_mute() {
+  wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+  output=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+  lvl=$(echo $output | awk '{printf "%d\n", $2 * 100}')
+  is_mute=$(echo $output | awk '{print $3}')
+  if [[ $silent == false ]]; then
+    echo $output
+  fi
+  if [[ $do_wob == true ]]; then
+    if [[ "$is_mute" == "[MUTED]" ]]; then
+      echo 0 > $wob
+    else
+      echo $lvl > $wob
+    fi
+  fi
+}
+
+brighten_screen() {
+  brightnessctl s 10%+ > /dev/null
+  lvl=$(brightnessctl -P g)
+  if [[ $silent == false ]]; then
+    echo $lvl
+  fi
+  if [[ $do_wob == true ]]; then
+    echo $lvl > $wob
+  fi
+}
+
+darken_screen() {
+  brightnessctl s 10%- > /dev/null
+  lvl=$(brightnessctl -P g)
+  if [[ $silent == false ]]; then
+    echo $lvl
+  fi
+  if [[ $do_wob == true ]]; then
+    echo $lvl > $wob
+  fi
+}
+
+case $action in
+  incr)
+    incr_vol
+  ;;
+
+  decr)
+    decr_vol
+  ;;
+
+  mute)
+    toggle_mute
+  ;;
+  brighter)
+    brighten_screen
+  ;;
+  darker)
+    darken_screen
+  ;;
+  ?)
+    echo "invalid action: $action"
+    exit 1
+  ;;
+esac
