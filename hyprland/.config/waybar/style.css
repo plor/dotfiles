@@ -1,11 +1,11 @@
 * {
-    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
-    font-size: 13px;
+    font-family: 'ETBembo, Semibold', 'Noto Sans Mono', 'Font Awesome 6 Free', monospace;
+    font-size: 17px;
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    color: #ffffff;
+    background-color: rgba(21, 21, 21, 0.5);
+    color: #dddddd;
     transition-property: background-color;
     transition-duration: .5s;
 }
