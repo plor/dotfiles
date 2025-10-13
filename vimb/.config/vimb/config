@@ -1,0 +1,39 @@
+set home-page=https://web.tabliss.io
+set dark-mode=true
+
+set download-path=~/Downloads/
+set cookie-accept=origin
+set closed-max-items=5
+set history-max-items=50
+
+set editor-command=${TERM} -e "nvim %s"
+
+set input-autohide=true
+set spell-checking=true
+set spell-checking-languages=en
+
+set webgl=true
+set accelerated-2d-canvas=true
+set hardware-acceleration-policy=ondemand
+
+set html5-database=true
+set html5-local-storage=true
+set images=true
+set smooth-scrolling=true
+
+set incsearch=true
+set tabs-to-links=true
+
+set javascript-can-access-clipboard=false
+set javascript-can-open-windows-automatically=false
+set geolocation=ask
+set notification=ask
+set plugins=true
+set scripts=true
+set minimum-font-size=4
+
+shortcut-add dd=https://duckduckgo.com/?q=$0
+shortcut-add dict=https://dict.cc/?s=$0
+shortcut-default dd
+
+
