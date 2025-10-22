@@ -1,7 +1,7 @@
 #!/bin/bash
 # general tools
 sudo dnf install -y neovim stow zsh zsh-syntax-highlighting zsh-autosuggestions
-sudo dnf install alacritty mutt pass dnf-plugins-core pipewire
+sudo dnf install -y alacritty mutt pass dnf-plugins-core pipewire git-delta
 
 # hyprland stuff
 sudo dnf -y copr enable solopasha/hyprland
