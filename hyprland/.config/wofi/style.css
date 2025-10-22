@@ -1,0 +1,47 @@
+window {
+	margin: 5px;
+	border: 2px solid #dddddd;
+	background-color: rgba(21, 21, 21, 0.5);
+}
+
+#input {
+	margin: 5px;
+	border: 2px solid #dddddd;
+	background-color: #3f3f3f;
+}
+
+#inner-box {
+//	margin: 5px;
+//	border: 0px solid yellow;
+	background-color: rgba(21, 21, 21, 0.5);
+}
+
+#outer-box {
+//	margin: 5px;
+//	border: 0px solid blue;
+	background-color: rgba(21, 21, 21, 0.5);
+}
+
+#scroll {
+	margin: 5px;
+	border: 2px solid #dddddd;
+	background-color: #ffffff;
+}
+
+#text {
+	margin: 5px;
+	border: 0px solid #dddddd;
+	color: #dddddd;
+}
+
+#entry {
+	background-color: rgba(21, 21, 21, 0.5);
+}
+
+#entry:selected {
+	background-color: #3f3f3f;
+}
+
+#text:selected {
+	background-color: #3f3f3f;
+}
