@@ -13,7 +13,7 @@
 		"tray",
 	],
 	"modules-center": [
-		"hyprland/submap"
+		"hyprland/workspaces",
 	],
 	"modules-right": [
 		"pulseaudio",
@@ -64,6 +64,13 @@
 	"tray": {
 		"icon-size": 20,
 		"spacing": 10,
+	},
+	"hyprland/workspaces": {
+		"active-only": false,
+		"show-special": true,
+		"move-to-monitor": true,
+		"on-scroll-up": "hyprctl dispatch workspace m-1 >/dev/null 2>&1",
+		"on-scroll-down": "hyprctl dispatch workspace m+1 >/dev/null 2>&1",
 	},
 	"pulseaudio": {
 		// "scroll-step": 1, // %, can be a float
