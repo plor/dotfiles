@@ -30,7 +30,15 @@ set geolocation=ask
 set notification=ask
 set plugins=true
 set scripts=true
+
 set minimum-font-size=4
+set status-css=color:#dddddd;background-color:#444444;font:20pt ETBembo;padding:3px 5px;
+set status-ssl-css=color:#dddddd;background-color:#666666;font:20pt ETBembo;padding:3px 5px;
+set status-ssl-invalid-css=color:#dddddd;background-color:#f53c3c;font:20pt ETBembo;padding:3px 5px;
+set completion-css=color:#dddddd;background-color:#666666;font:14pt ETBembo;
+set completion-hover-css=color:#dddddd;background-color:#aaaaaa;font:14pt ETBembo;
+set input-css=color:#dddddd;background-color:#666666;font:20pt ETBembo;
+set input-error-css=color:#dddddd;background-color:#f53c3c;font:20pt ETBembo;
 
 shortcut-add dd=https://duckduckgo.com/?q=$0
 shortcut-add dict=https://dict.cc/?s=$0
