@@ -8,6 +8,11 @@ window {
 	margin: 5px;
 	border: 2px solid #444444;
 	background-color: #3f3f3f;
+	color: #dddddd;
+}
+#input:focus {
+	outline: none;
+	box-shadow: none;
 }
 
 #inner-box {
