@@ -2,7 +2,7 @@
 # general tools
 sudo dnf install -y neovim stow zsh zsh-syntax-highlighting zsh-autosuggestions
 sudo dnf install -y alacritty mutt pass dnf-plugins-core pipewire git-delta
-sudo dnf install -y vimb just irssi lsb_release solaar zbar
+sudo dnf install -y vimb just irssi lsb_release solaar zbar glow
 
 # hyprland stuff
 sudo dnf -y copr enable solopasha/hyprland
