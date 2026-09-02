@@ -1,10 +1,12 @@
 add_newline = true
 command_timeout = 200
-format = "[$directory$git_branch$git_status]($style)$character"
+format = "[$jobs$hostname$cmd_duration$directory$git_branch$git_status]($style)$character"
 
 [character]
-error_symbol = "[✗](bold cyan)"
+error_symbol = "[✗](bold red)"
 success_symbol = "[❯](bold cyan)"
+vimcmd_symbol = "[❮](bold yellow)"
+vimcmd_visual_symbol = "[❮](bold purple)"
 
 [directory]
 truncation_length = 2
@@ -30,3 +32,14 @@ stashed    = ""
 staged     = ""
 renamed    = ""
 deleted    = ""
+
+[cmd_duration]
+format = "[$duration](bold green) "
+min_time = 1_000
+
+[hostname]
+ssh_only = true
+format = '[$ssh_symbol$hostname] - ($style)'
+
+[jobs]
+format = '[\[$symbol$number\] ]($style)'
