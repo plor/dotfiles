@@ -1,43 +1,57 @@
-# Load shared shell scripts
-. ~/.config/sh/shared_env
-. ~/.config/sh/aliases
-. ~/.config/sh/secrets
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
-# Prompt config
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats ' (%F{#888888}%b%f)'
-precmd () { vcs_info }
-setopt prompt_subst
+# Omarchy environment (OMARCHY_PATH + PATH), needed even for non-interactive shells
+[[ -r /usr/share/omarchy/default/bash/env-bootstrap ]] && source /usr/share/omarchy/default/bash/env-bootstrap
 
-PS1='%F{#777777}%B%(?..%? )%b%f%F{#bbbbbb}%~%f${vcs_info_msg_0_} > '
+# Load zsh options, keybindings, and completion
+[[ -f /usr/share/omarchy-zsh/shell/zoptions ]] && source /usr/share/omarchy-zsh/shell/zoptions
 
-# Color and theme config
-. /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-ZSH_HIGHLIGHT_STYLES[path]=none
-ZSH_HIGHLIGHT_STYLES[path_pathseparator]=none
-ZSH_HIGHLIGHT_STYLES[path_prefix]=none
-ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]=none
-ZSH_HIGHLIGHT_STYLES[precommand]=none
+# Load shared shell configuration (aliases, functions, environment, tool init)
+[[ -f /usr/share/omarchy-zsh/shell/all ]] && source /usr/share/omarchy-zsh/shell/all
 
-ZSH_HIGHLIGHT_STYLES[command]="fg=#999999"
-ZSH_HIGHLIGHT_STYLES[builtin]="fg=#888888"
-ZSH_HIGHLIGHT_STYLES[alias]="fg=#aaaaaa"
+# Omarchy environment/locale/PATH handling (idempotent, zsh-safe)
+[[ -r $OMARCHY_PATH/default/bash/envs ]] && source "$OMARCHY_PATH/default/bash/envs"
 
-# Suggestion config
-. /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#555555"
-ZSH_AUTOSUGGEST_STRATEGY=(completion match_prev_cmd)
+# Omarchy aliases and shared functions (zsh-compatible; updated with omarchy)
+[[ -r $OMARCHY_PATH/default/bash/aliases ]] && source "$OMARCHY_PATH/default/bash/aliases"
+[[ -r $OMARCHY_PATH/default/bash/functions ]] && source "$OMARCHY_PATH/default/bash/functions"
 
-# Completion config
-zstyle ':completion:*' completer _expand _complete _ignored _approximate
-zstyle ':completion:*' completions 1
-zstyle ':completion:*' glob 1
-zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
-zstyle ':completion:*' max-errors 4
-zstyle ':completion:*' substitute 1
-zstyle :compinstall filename '~/.zshrc'
+# Tool integrations (zsh variants of omarchy's bash init)
+if command -v mise &> /dev/null; then
+  eval "$(mise activate zsh)"
+fi
 
-autoload -Uz compinit
-compinit
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
 
-# Misc
+if command -v try &> /dev/null; then
+  try() {
+    unset -f try
+    eval "$(SHELL=/bin/zsh command try init ~/Work/tries)"
+    try "$@"
+  }
+fi
+
+if command -v fzf &> /dev/null; then
+  [[ -r /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
+  [[ -r /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+fi
+
+# Prompt (starship; config in ~/.config/starship.toml)
+if [[ $- == *i* ]] && [[ ${TERM:-} != "dumb" ]] && command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+# Add your own customizations below
+#
+# Make an alias for invoking commands you use constantly
+# alias p='python'
+# alias cx="claude --permission-mode=plan --allow-dangerously-skip-permissions"
+
+# Personal shared shell scripts
+[[ -r ~/.config/sh/shared_env ]] && . ~/.config/sh/shared_env
+[[ -r ~/.config/sh/aliases ]] && . ~/.config/sh/aliases
+[[ -r ~/.config/sh/secrets ]] && . ~/.config/sh/secrets
+
